@@ -93,10 +93,16 @@ double Adafruit_MAX31855::readCelsius(void) {
   Serial.print("\tInternal Temp: "); Serial.println(internal);
   */
 
+//  if (z & 0x10000) {
+//      Serial6.println("Error bit B16 set");
+//  }
+
   if (v & 0x7) {
-    // uh oh, a serious problem!
-    return NAN; 
+//      uh oh, a serious problem!
+//      Serial6.println("Error detected");
+//      return NAN;
   }
+
 
   if (v & 0x80000000) {
     // Negative value, drop the lower 18 bits and explicitly extend sign bits.
@@ -112,6 +118,8 @@ double Adafruit_MAX31855::readCelsius(void) {
 
   // LSB = 0.25 degrees C
   centigrade *= 0.25;
+//  Serial6.print("Centigrade value : ");
+//  Serial6.println(centigrade);
   return centigrade;
 }
 
